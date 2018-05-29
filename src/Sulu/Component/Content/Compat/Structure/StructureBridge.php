@@ -299,7 +299,9 @@ class StructureBridge implements StructureInterface
         $children = [];
 
         foreach ($this->getDocument()->getChildren() as $child) {
-            $children[] = $this->documentToStructure($child);
+            if (!($child instanceof UnknownDocument)) {
+                $children[] = $this->documentToStructure($child);
+            }
         }
 
         return $children;
